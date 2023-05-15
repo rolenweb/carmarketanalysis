@@ -37,3 +37,9 @@ out
 *.ipr
 *.idea
 
+#Docker
+.docker
+
+#ENV
+.env
+
