@@ -39,6 +39,7 @@ out
 
 #Docker
 .docker
+docker/db
 
 #ENV
 .env

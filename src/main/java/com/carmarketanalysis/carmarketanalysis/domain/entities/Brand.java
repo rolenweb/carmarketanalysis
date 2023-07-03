@@ -1,5 +1,6 @@
 package com.carmarketanalysis.carmarketanalysis.domain.entities;
 
+import com.carmarketanalysis.carmarketanalysis.domain.valueobjects.Name;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -16,7 +17,7 @@ public class Brand {
     private final Long id;
 
     @Column("name")
-    private final String name;
+    private final Name name;
 
     @CreatedDate
     @Column("created_at")
@@ -27,12 +28,12 @@ public class Brand {
     @Column("updated_at")
     private final LocalDateTime updatedAt;
 
-    public Brand(String name) {
+    public Brand(Name name) {
         this(null, name, LocalDateTime.now(), LocalDateTime.now());
     }
 
     @PersistenceCreator
-    public Brand(Long id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Brand(Long id, Name name, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
@@ -44,7 +45,7 @@ public class Brand {
         return id;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 

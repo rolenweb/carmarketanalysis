@@ -12,3 +12,34 @@ services:
 
     ports:
       - ${DOCKER_DATABASE_PORT}:5432
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    hostname: chrome
+    privileged: true
+    shm_size: 2g
+    ports:
+      - "4441:4444"
+      - "7900:7900"
+    environment:
+      - SE_VNC_NO_PASSWORD=1
+      - SE_NODE_MAX_SESSIONS=3
+
+  firefox:
+      image: selenium/standalone-firefox:latest
+      hostname: firefox
+      privileged: true
+      shm_size: 2g
+      ports:
+        - "4442:4444"
+        - "7901:7900"
+      environment:
+        - SE_VNC_NO_PASSWORD=1
+        - SE_NODE_MAX_SESSIONS=3
+
+  wiremock-server:
+    image: wiremock/wiremock:2.35.0
+    ports:
+      - "3001:8080"
+    volumes:
+      - ./wiremock:/home/wiremock
