@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/auto_list_page_2"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "auto_list_page_2.html"
+  }
+}

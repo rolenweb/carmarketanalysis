@@ -2,6 +2,7 @@ package com.carmarketanalysis.carmarketanalysis.integration.infrastructure.repos
 
 import com.carmarketanalysis.carmarketanalysis.PostgresContainer;
 import com.carmarketanalysis.carmarketanalysis.domain.entities.Brand;
+import com.carmarketanalysis.carmarketanalysis.domain.valueobjects.Name;
 import com.carmarketanalysis.carmarketanalysis.infrastructure.repositories.BrandRepository;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
@@ -22,8 +23,10 @@ public class BrandRepositoryTest extends PostgresContainer {
     public void testShouldCreateNewBrand() {
         var faker = new Faker();
         var name = faker.name().username();
-        var brand = brandRepository.save(new Brand(name));
-        assertEquals(name, brand.getName());
+        var brand = brandRepository.save(new Brand(new Name(name)));
+        assertEquals(name, brand.getName().getValue());
+        assertNotNull(brand.getCreatedAt());
+        assertNotNull(brand.getUpdatedAt());
     }
 
     @Test
@@ -31,8 +34,8 @@ public class BrandRepositoryTest extends PostgresContainer {
         assertThrows(Exception.class, () -> {
             var faker = new Faker();
             var name = faker.name().username();
-            brandRepository.save(new Brand(name));
-            brandRepository.save(new Brand(name));
+            brandRepository.save(new Brand(new Name(name)));
+            brandRepository.save(new Brand(new Name(name)));
         });
     }
 }
