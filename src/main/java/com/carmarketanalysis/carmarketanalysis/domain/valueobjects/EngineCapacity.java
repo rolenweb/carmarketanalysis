@@ -20,4 +20,11 @@ public class EngineCapacity {
             throw new IllegalArgumentException("Engine capacity must be less than 10");
         }
     }
+
+    @Override
+    public String toString() {
+        return "EngineCapacity{" +
+                "value=" + value +
+                '}';
+    }
 }

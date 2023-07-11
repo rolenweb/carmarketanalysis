@@ -16,7 +16,7 @@ public class FilterTest {
         var filter = new Filter(
                 1,
                 new Brand(new Name("Kia")),
-                new Model()
+                new Model(new Name("Soul"))
         );
         assertTrue(true);
     }

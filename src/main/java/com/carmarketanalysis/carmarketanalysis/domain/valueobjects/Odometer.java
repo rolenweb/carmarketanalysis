@@ -17,4 +17,11 @@ public class Odometer {
             throw new IllegalArgumentException("Value must be greater or equal zero");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Odometer{" +
+                "value=" + value +
+                '}';
+    }
 }

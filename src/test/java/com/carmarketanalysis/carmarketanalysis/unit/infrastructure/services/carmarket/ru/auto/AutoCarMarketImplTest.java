@@ -53,7 +53,7 @@ public class AutoCarMarketImplTest {
 
     @Test
     public void testShouldReturnListOfCarsByFilter() throws IOException {
-        var filter = new Filter(1, new Brand(new Name("Kia")), new Model());
+        var filter = new Filter(1, new Brand(new Name("Kia")), new Model(new Name("Soul")));
         when(autoUrlProvider.generateByFilter(filter)).thenReturn(uri());
         //when(autoScraper.scrape(uri())).thenReturn(Optional.of(mockData()));
         autoCarMarket.findByFilter(filter);
