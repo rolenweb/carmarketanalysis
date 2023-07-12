@@ -12,13 +12,8 @@ public class EngineCapacity {
         return value;
     }
 
-    private void assertValue(float value) {
-        if (value < 0.2) {
-            throw new IllegalArgumentException("Engine capacity must be greater than 0.2");
-        }
-        if (value > 10) {
-            throw new IllegalArgumentException("Engine capacity must be less than 10");
-        }
+    public int getValueInMl() {
+        return (int) (value * 1000);
     }
 
     @Override
@@ -26,5 +21,14 @@ public class EngineCapacity {
         return "EngineCapacity{" +
                 "value=" + value +
                 '}';
+    }
+
+    private void assertValue(float value) {
+        if (value < 0.2) {
+            throw new IllegalArgumentException("Engine capacity must be greater than 0.2");
+        }
+        if (value > 10) {
+            throw new IllegalArgumentException("Engine capacity must be less than 10");
+        }
     }
 }

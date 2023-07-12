@@ -12,7 +12,11 @@ public class EngineCapacityTest {
     void testShouldCreateEngineCapacityObject() {
         var engineCapacity = new EngineCapacity(2);
         assertEquals(2, engineCapacity.getValue());
+
+        var engineCapacity2 = new EngineCapacity(0.5f);
+        assertEquals(500, engineCapacity2.getValueInMl());
     }
+
 
     @Test
     void testShouldThrowExceptionIfEngineCapacityLessThanZeroPointTwo() {

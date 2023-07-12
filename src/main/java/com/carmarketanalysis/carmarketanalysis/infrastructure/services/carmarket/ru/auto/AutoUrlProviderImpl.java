@@ -55,10 +55,10 @@ public class AutoUrlProviderImpl implements AutoUrlProvider{
             queryParams.add("km_age_to", String.valueOf(filter.getOdometerTo().getValue()));
         }
         if (filter.getEngineCapacityFrom() != null) {
-            queryParams.add("displacement_from", String.valueOf(filter.getEngineCapacityFrom().getValue()));
+            queryParams.add("displacement_from", String.valueOf(filter.getEngineCapacityFrom().getValueInMl()));
         }
         if (filter.getEngineCapacityTo() != null) {
-            queryParams.add("displacement_to", String.valueOf(filter.getEngineCapacityTo().getValue()));
+            queryParams.add("displacement_to", String.valueOf(filter.getEngineCapacityTo().getValueInMl()));
         }
         if (filter.getTransmission() != null) {
             queryParams.add("transmission", filter.getTransmission().getValue().toUpperCase());

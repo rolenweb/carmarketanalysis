@@ -42,7 +42,7 @@ public class AutoCarMarketImpl implements CarMarket {
                 var uri = autoUrlProvider.generateByFilter(filter);
                 logger.info("Generated URI: {}", uri);
                 var scraperResponse = autoScraper.scrape(uri);
-                scraperResponse.getItems().stream().forEach(carItem -> {
+                scraperResponse.getItems().forEach(carItem -> {
                     try {
                         cars.add(new Car(new Name(carItem.getTitle()), new URL(carItem.getUrl())));
                     } catch (MalformedURLException e) {
