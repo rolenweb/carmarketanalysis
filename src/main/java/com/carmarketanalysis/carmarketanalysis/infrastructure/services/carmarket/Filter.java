@@ -10,7 +10,7 @@ import java.time.Year;
 
 public class Filter {
     private static final Logger logger = LoggerFactory.getLogger(Filter.class);
-    private int page = 1;
+    private int page;
     private final Brand brand;
     private final Model model;
     private Transmission transmission;
@@ -135,6 +135,13 @@ public class Filter {
     public Filter setOdometerTo(Odometer odometerTo) {
         this.odometerTo = odometerTo;
         return this;
+    }
+
+    public boolean isOneYear() {
+        if (yearTo == null || yearFrom == null) {
+            return false;
+        }
+        return yearTo.equals(yearFrom);
     }
 
     @Override

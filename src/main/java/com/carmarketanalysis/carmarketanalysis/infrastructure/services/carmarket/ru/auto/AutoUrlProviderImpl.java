@@ -14,11 +14,11 @@ public class AutoUrlProviderImpl implements AutoUrlProvider{
     public URI generateByFilter(Filter filter) {
         var uriBuilder = baseUri(filter);
 
-        return uriBuilder.build().toUri();
+        return uriBuilder.queryParams(getQueryParams(filter)).build().toUri();
     }
 
     private UriComponentsBuilder baseUri(Filter filter) {
-        if (filter.getYearFrom() == null || filter.getYearTo() == null || !filter.getYearFrom().equals(filter.getYearTo())) {
+        if (!filter.isOneYear()) {
             return UriComponentsBuilder.fromHttpUrl(
                     String.format(
                             "https://auto.ru/moskva/cars/%s/%s/used/",
@@ -40,6 +40,14 @@ public class AutoUrlProviderImpl implements AutoUrlProvider{
 
     private MultiValueMap<String, String> getQueryParams(Filter filter) {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
+        if (!filter.isOneYear()) {
+            if (filter.getYearFrom() != null) {
+                queryParams.add("year_from", filter.getYearFrom().toString());
+            }
+            if (filter.getYearTo() != null) {
+                queryParams.add("year_to", filter.getYearTo().toString());
+            }
+        }
         if (filter.getOdometerFrom() != null) {
             queryParams.add("km_age_from", String.valueOf(filter.getOdometerFrom().getValue()));
         }
@@ -51,6 +59,12 @@ public class AutoUrlProviderImpl implements AutoUrlProvider{
         }
         if (filter.getEngineCapacityTo() != null) {
             queryParams.add("displacement_to", String.valueOf(filter.getEngineCapacityTo().getValue()));
+        }
+        if (filter.getTransmission() != null) {
+            queryParams.add("transmission", filter.getTransmission().getValue().toUpperCase());
+        }
+        if (filter.getPage() > 1) {
+            queryParams.add("page", String.valueOf(filter.getPage()));
         }
         return queryParams;
     }
